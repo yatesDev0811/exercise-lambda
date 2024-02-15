@@ -17,9 +17,11 @@ public class App {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
+		
 		System.out.print("Enter full file path:");
 		String path = sc.nextLine();
 		
+		//Lendo arquivo
 		try(BufferedReader br = new BufferedReader(new FileReader(path))){
 			
 			List<Employees> list = new ArrayList<>();
@@ -32,7 +34,8 @@ public class App {
 			
 			System.out.print("Enter salary: ");
 			double salary = sc.nextDouble();
-			
+
+		//Logica de filtragem pelo salario e ordenando email	
 			List<String> email = list.stream()
 					.filter(x -> x.getSalary() > salary)
 					.map(x -> x.getEmail())
@@ -42,6 +45,7 @@ public class App {
 			System.out.println("Email of people whose salary is more than: " + String.format("%.2f", salary) + ":");
 			email.forEach(System.out::println);
 			
+		//Logica de filtragem pela 1letra do nome	
 			double sum = list.stream()
 					.filter(x -> x.getName().charAt(0) == 'M')
 					.map(x -> x.getSalary())
